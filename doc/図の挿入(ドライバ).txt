@@ -1,0 +1,53 @@
+【基本事項】LaTeX文書への図の挿入は、プリアンブルで
+\usepackage[ドライバ名]{graphicx}
+として、graphicx パッケージを使用する。
+本文中では、\includegraphicsコマンドを使って、
+\includegraphics[オプション]{ファイル名}
+として図を挿入する。
+※　奥村晴彦ほか「LaTeX2ε美文書作成入門【改訂第6版】」技術評論社(2013)
+(p.120)
+
+pLaTeX, pdfpLaTeX では、
+\usepackage[dvipdfmx]{graphicx}
+とすることで、画像のBBサイズ（バウンディングボックス）を指定しなくても画像が挿入されるので
+便利だが、
+pdfLaTeX（※ pの付かないTeX）
+では、dvipdfmxドライバの指定を外さないと画像が表示されない。（挿入はされる）
+\usepackage{graphicx}
+としても画像のBBサイズを指定することなく、画像も表示される。
+(2017/3/21)
+
+
+
+表示されないpng画像が，color パッケージを xcolor パッケージへ変更することで対応できた。
+画像の指定例：
+\includegraphics[width=.3\hsize, bb=00 00 745 800]{gazou.png}
+
+(2023/3/8)
+
+png画像が表示されないとき，documentclassにdvipdfmxをつけるだけで，表示された。
+元のプリアンブル：
+\documentclass{jarticle}
+\usepackage[dvipdfmx]{pict2e}
+\usepackage{ketpic2e}
+\usepackage{ketlayer2e}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+修正後のプリアンブル：
+\documentclass[dvipdfmx]{jarticle}
+\usepackage[dvipdfmx]{pict2e}
+\usepackage{ketpic2e}
+\usepackage{ketlayer2e}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+
+（注意）
+\usepackage{graphicx}
+を
+\usepackage[divipdfmx]{graphicx}
+としてもダメだった。
+(2025/7/19)
