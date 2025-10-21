@@ -1,0 +1,34 @@
+(u)pLaTeX では全角文字の幅と高さを zw と zh という単位で表していたが，LuaLaTeX では \zw と \zh とする。
+
+ただし，artcleなどの英文用ドキュメントクラスでは，
+1行目を
+\documentclass[a4paper]{article}
+として，LuaLaTeX でコンパイルすると，\zw が使えない。
+そのとき，
+\usepackage{luatexja}
+または，
+\usepackage{luatexja-fontspec}
+などを指定すると\zw を使うことができるようになる。
+
+また，
+1行目を
+ltjarticleなどlt系の和文ドキュメントクラスを指定して，
+LuaLaTeX でコンパイルすると，\zw が使える。
+※ ドキュメントクラスの内部で，luatexja を読みにいっているらしい。
+
+日本語フォントの指定を考えれば，この場合でも
+\usepackage{luatexja-fontspec}
+を使いたい。
+
+もし，\zw を使わない場合，規格上は，1\zw≒0.9246em を利用すれば良いかと思われたが，
+自分の環境で試すと，1\zw≒0.96222em 
+
+確認する方法としては，
+\the\zw と \the\fontdimen6\font
+という行を含めてコンパイルすれば良い。このとき，
+"9.6222pt と 10.0pt"
+という行が表示される。
+
+(2025/10/20)
+
+

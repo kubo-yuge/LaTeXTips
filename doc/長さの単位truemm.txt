@@ -1,0 +1,30 @@
+truecm, truemm について，次のリンクに説明があったのでコピーしておく。
+
+■ geometry パッケージによる用紙サイズや余白の設定が意図通りにならない
+（https://texwiki.texjp.org/?よくある質問#x2fe151a）
+
+よく陥りがちな罠について書いておきます．
+
+b5paper は geometry では ISO の B5 を意味するため，JIS の B5 を指定するためには b5j とする必要があります．
+jsarticle との併用で文字サイズも変更したい場合は，jsarticle が \mag という拡大縮小機能を利用している影響を防ぐために，truedimen オプションを geometry に合わせて渡す必要があります． 余白などの寸法の指定時にも，cm や mm の代わりに truecm, truemm を使います．
+\documentclass[11pt]{jsarticle}
+\usepackage[b5j,truedimen,margin=2truecm]{geometry}
+...
+次も参考にしてください．
+
+B5用紙サイズについて
+LaTeX の「アレなデフォルト」 傾向と対策 ― その8：用紙サイズの扱いがアレ
+
+
+Last-modified: 2025-09-Last-modified: 2025-09-21 (日) 18:04:22 (27d)
+
+※　上の説明から，jarticle,jsarticleなどと異なりjの付かないarticleなどで，truecm, truemmという単位が使えないのか確認した。
+1行目を
+\documentclass[a4paper]{article}
+として，platex でコンパイルすると，使えた。
+1行目を
+\documentclass[a4paper]{article}
+として，LuaLaTeX でコンパイルすると，これも使えた。
+
+(2025/10/18)
+
