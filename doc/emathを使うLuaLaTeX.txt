@@ -1,0 +1,53 @@
+MacBookAirの例です。
+
+【１：臨時版emathを入手】
+emathのページから臨時版emath（lualatex対応のemath）を入手する。
+※ 丸ごとパックや訂正版のemathは，platex用です。lualatex対応のemathは，臨時版のemath（実験的ファイル）emathtmp-250912.zipを入手します。
+(2026/2/18)
+
+【２：styファイルを置くべき場所を探す】
+（１）TeXLiveユーザー（TeXLive2021 を使っている場合）
+platex用のemathのパスを確認する。
+/usr/local/texlive/2021/texmf-local/tex/platex/
+
+それに合わせて，lualatex用のパスを次のようにする。
+/usr/local/texlive/2021/texmf-local/tex/lualatex/
+
+
+（２）KeTTeXユーザー
+platex用のパスを確認する。
+/Applications/KeTTeX.app/texlive/texmf-local/tex/platex/
+※ 通常のインストールで，emathは，このパスにあるはず。
+
+それに合わせて，lualatex用のパスを次のようにする。
+/Applications/KeTTeX.app/texlive/texmf-local/tex/lualatex/
+
+※※ それぞれ　パス ".../tex/" の下にフォルダ "lualatex" がなければ，それを作る。
+
+
+【３：styファイルを置く】
+上で確認したパスにあるフォルダ "lualatex" の中に，styファイルを入れるための（"emath-lua"とか"emath"という名前の）フォルダを作る。
+そのフォルダに，emathtmp-250912.zipを解凍して得たstyファイル群を入れる。
+
+
+【４：mktexlsrを実行する】
+sudo mktexlsr
+
+
+【５：参考】
+（１）コンパイル時に，パスの名前と対応させて，スタイルファイルを見に行くらしい。
+ただし，texソースと同じパスにstyファイルがあれば，それを優先する。
+この原理により，lualatexコンパイルのときはフォルダlualatexの下にあるstyファイルを読み込み、platexコンパイルのときはフォルダplatexの下にあるstyファイルを読み込むことで，lualatex用のemathと，platex用のemathが使い分けられるらしい。
+
+（２）LuaLaTeX で，edaenumerate環境を使うためのプリアンブル例
+※ 下のようにすれば，KeTpicスタイルとedaenumerate環境の両方に対応。
+----(ここから)----
+% !TEX program = lualatex
+\documentclass[a4paper]{article}
+\usepackage{luatexja}
+\usepackage{pict2e}
+\usepackage{ketpic2e,ketlayer2e}
+\usepackage{graphicx,color}
+
+\usepackage{emath,emathEy}
+----(ここまで)----
