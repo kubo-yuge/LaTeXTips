@@ -463,6 +463,7 @@ body {
 <p>文書全体のスタイルを統一したい場合にプリアンブル等に記述します。</p>
 
 <ul>
+<li>\rubysetup{g}: グループルビ（おすすめ）</li>
 <li>\rubysetup{J}: 自動判別・熟語ルビモード（おすすめ）</li>
 <li>\rubysetup{c}: 中付き（デフォルト）</li>
 <li>\rubysetup{h}: 肩付き</li>
@@ -471,6 +472,17 @@ body {
 <h2>4. 結論</h2>
 
 <h2>LuaLaTeXにおいて、余計な補助ファイル（.ltjruby）を作らず、かつ柔軟にルビを制御したい場合は pxrubrica を選択するのが非常に合理的です。</h2>
+
+<h2>後日補足</h2>
+
+<p>okumacroからの乗り換えでは，</p>
+
+<p>\usepackage{pxrubrica}</p>
+
+<p>\rubysetup{g}</p>
+
+<p>の2行を指定しておくのが，ルビの扱いも同様で，エラーも少ない。
+(2026/5/5)</p>
 
 
 
