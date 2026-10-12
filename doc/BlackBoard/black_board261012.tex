@@ -1,0 +1,91 @@
+% !TEX program = lualatex
+\documentclass{ltjsarticle}
+\usepackage{ketpic2e,ketlayer2e,graphicx,xcolor}
+\usepackage{bm}
+
+
+\usepackage{amsmath,amssymb,amsfonts}
+% 通常の \mathbb を保持し，
+% bboldフォントを使う
+\DeclareMathAlphabet{\bbold}{U}{bbold}{m}{n}
+
+% 数字にstixbbフォントを使う
+\DeclareFontEncoding{LS1}{}{}
+\DeclareFontSubstitution{LS1}{stix}{m}{n}
+\DeclareFontFamily{LS1}{stixbb}{\skewchar\font127}
+\DeclareFontShape{LS1}{stixbb}{m}{n}{<-> stix-mathbb}{}
+\DeclareMathAlphabet{\stixbb}{LS1}{stixbb}{m}{n}
+
+\setmargin{15}{15}{20}{20}%% ketpicにより調整
+
+\begin{document}
+\Large
+【黒板文字を使う】\\
+黒板太字はベクトルを太字で書くときに使う。板書のときに使う簡略形を{\LaTeX}文書に使いたい。板書のときの簡略形は統一ルールがないように見える。ここで紹介するのは，一例とする。(これは，Lua\LaTeX でコンパイルしている。)
+
+\textgt{提案：}大文字，小文字は，bboldフォントを使う（\verb|\bbolda|, \verb|\bboldb|, \verb|\bboldc|, ...）。数字は，stixフォントを使う。\\
+
+\verb|\bbold| の確認（\verb|\bbold{a}|, \verb|\bbold{b}|, \verb|\bbold{c}|, ...）\par
+大文字：$\bbold{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\par
+小文字：$\bbold{abcdefghijklmnopqrstuvwxyz}$\qquad
+数字：$\bbold{0123456789}$\\
+
+気になる$\bbold{a,d,f,q,s,t}$を修正しつつ，他の文字は，そのまま使う。\par
+※ コマンド名は，\verb|\bbolda|, \verb|\bboldb|, \verb|\bboldc|, ...
+%% 定義開始
+\newcommand{\bbolda}
+{\rlap{\hspace{0.94ex}\setlength{\fboxsep}{0pt}\fboxrule=.09ex\raise.093ex\hbox{\framebox[.37ex]{\rule[0ex]{0ex}{.82ex}}}}\bbold{a}\hspace{.3ex}}
+\newcommand{\bboldb}{\bbold{b}}
+\newcommand{\bboldc}{\bbold{c}}
+\newcommand{\bboldd}
+{\hspace{.2ex}\rlap{\hspace{.23ex}\rule[.1ex]{.1ex}{.84ex}}\scalebox{-1}[1]{$\bbold{b}$}}
+\newcommand{\bbolde}{\bbold{e}}
+\newcommand{\bboldf}
+{\hspace{.2ex}\rlap{\hspace{-.05ex}\rule[.9ex]{.2ex}{.1ex}}\bbold{f}}
+\newcommand{\bboldg}{\bbold{g}}
+\newcommand{\bboldh}{\bbold{h}}
+\newcommand{\bboldi}{\bbold{i}}
+\newcommand{\bboldj}{\bbold{j}}
+\newcommand{\bboldk}{\bbold{k}}
+\newcommand{\bboldl}{\bbold{l}}
+\newcommand{\bboldm}{\bbold{m}}
+\newcommand{\bboldn}{\bbold{n}}
+\newcommand{\bboldo}{\bbold{o}}
+\newcommand{\bboldp}{\bbold{p}}
+\newcommand{\bboldq}
+{\hspace{.2ex}\rlap{\hspace{.25ex}\rule[.07ex]{.1ex}{.86ex}}\scalebox{-1}[1]{$\bbold{p}$}}
+\newcommand{\bboldr}{\bbold{r}}
+\newcommand{\bbolds}
+{\rlap{\hspace{.5ex}\rule[-.02ex]{.08ex}{.6ex}}\bbold{s}}
+\newcommand{\bboldt}
+{\hspace{.1ex}\hspace{.09ex}\rlap{\hspace{-.09ex}\rule[.9ex]{.3ex}{.1ex}}\bbold{t}}
+\newcommand{\bboldu}{\bbold{u}}
+\newcommand{\bboldv}{\bbold{v}}
+\newcommand{\bboldw}{\bbold{w}}
+\newcommand{\bboldx}{\bbold{x}}
+\newcommand{\bboldy}{\bbold{y}}
+\newcommand{\bboldz}{\bbold{z}}
+%% 定義終了
+
+$\bbolda \bboldb \bboldc \bboldd \bbolde \bboldf \bboldg \bboldh \bboldi \bboldj \bboldk \bboldl \bboldm \bboldn \bboldo \bboldp \bboldq \bboldr \bbolds \bboldt \bboldu \bboldv \bboldw \bboldx \bboldy \bboldz$\\
+
+
+amsの黒板文字の確認（\verb|\mathbb|）\\
+\verb|\mathbb|\par
+大文字：$\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\par
+小文字：$\mathbb{abcdefghijklmnopqrstuvwxyz}$\qquad\par
+数字：$\mathbb{0123456789}$\\
+※ オリジナルのmathbb は，小文字と数字に記号が割り当てられている。\\
+
+\verb|\stixbb|による，stixフォントの数字の確認\\
+\quad$\stixbb{0123456789}$\\
+
+\vspace{\baselineskip}
+
+【設定内容】\\
+(1) ３つのパッケージ（bbold,amssymb,amsfonts）に共通の\verb|\mathbb|コマンドがあり，コマンドが被るので， bboldパッケージを使わず，bboldのフォントを別名のコマンドで使う。これによりamsの黒板文字フォントを同じ文書に使える。\\
+(2) プリアンブルや，字形の修正内容はtexソースで確認できる。
+
+
+
+\end{document}
