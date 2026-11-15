@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BlackBoard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      line-height: 1.7;
+      max-width: 960px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+    h1 { margin-bottom: 1rem; }
+    .pdf-viewer {
+      width: 100%;
+      height: 75vh;
+      min-height: 480px;
+      border: 1px solid #bbb;
+    }
+    li { margin: 0.4rem 0; }
+    .note { color: #555; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+  <iframe class="pdf-viewer"
+          src="black_board261113.pdf"
+          title="BlackBoard PDF">
+    このブラウザではPDFを表示できません。
+    <a href="black_board261113.pdf">PDFを開く</a>
+  </iframe>
+
+  <h2>関連ファイル</h2>
+  <ul>
+    <li>texソース：<a href="black_board261113.tex" onclick="return false;">black_board261113.tex</a></li>
+    <li>fontファイル：<a href="CMMB10kubo.otf" onclick="return false;">CMMB10kubo.otf</a></li>
+  </ul>
+  <p class="note">
+    TeXソースとfontファイルは、リンクを右クリック（Macでは2本指クリック）して、
+    「リンク先のファイルをダウンロード」または「名前を付けてリンク先を保存」を選んでください。
+  </p>
+</body>
+</html>
