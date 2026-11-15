@@ -1,0 +1,67 @@
+% !TEX program = lualatex
+\documentclass{ltjsarticle}
+\usepackage{ketpic2e,ketlayer2e,graphicx,xcolor}
+\usepackage{bm}
+
+
+\usepackage{amsmath,amssymb}% amsfontsを読みに行くamssymb などを指定
+
+% 通常の \mathbb を保持し，bboldフォントを使う
+\DeclareMathAlphabet{\bbold}{U}{bbold}{m}{n}
+
+% 自作フォント，CMMB10kubo.otfを\kuboldコマンドで使う
+\usepackage{luatexja-fontspec}% \usepackage{fontspec}でもよい
+\newfontfamily\CMMBkuboFont{CMMB10kubo.otf}
+\DeclareRobustCommand{\kubold}[1]{\text{\CMMBkuboFont #1}}
+
+% 数字にstixbbフォントを使う
+\DeclareFontEncoding{LS1}{}{}
+\DeclareFontSubstitution{LS1}{stix}{m}{n}
+\DeclareFontFamily{LS1}{stixbb}{\skewchar\font127}
+\DeclareFontShape{LS1}{stixbb}{m}{n}{<-> stix-mathbb}{}
+\DeclareMathAlphabet{\stixbb}{LS1}{stixbb}{m}{n}
+
+%\setmargin{15}{15}{20}{20}%% ketpicにより調整
+
+% 用紙サイズと余白の設定
+\usepackage[
+  paperwidth=210mm,
+  paperheight=165mm,
+  left=15mm,
+  right=15mm,
+  top=5mm,
+  bottom=5mm
+]{geometry}
+
+\pagestyle{empty}
+
+\begin{document}
+\Large\noindent
+{\huge 【黒板文字を使う】}\\
+黒板太字の小文字はベクトルを太字で書くときに使う。板書のときに使う簡略形を{\LaTeX}文書に使いたい。板書のときの簡略形は統一ルールがないように見える。ここで紹介するのは，一例とする。(これは，Lua\LaTeX でコンパイルしている。)
+
+\textgt{参考：}amsfontsの\verb|\mathbb|による大文字\\
+$\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+
+\textgt{提案１：}大文字，小文字，数字をすべて bboldフォントで表示する。\par
+
+\verb|\bbold| の確認（\verb|\bbold{a}|, \verb|\bbold{b}|, \verb|\bbold{c}|, ...）\par
+大文字：$\bbold{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\par
+小文字：$\bbold{abcdefghijklmnopqrstuvwxyz}$\qquad
+数字：$\bbold{0123456789}$\\
+
+
+\textgt{提案2：}大文字は amsfonts（\verb|\mathbb|），数字は stixフォント（\verb|\stixbb|）を使う。小文字は 久保が作成したフォント（\verb|CMMB10kubo.otf|）を使う。\par
+大文字：$\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$（\verb|\mathbb|）\par
+小文字：$\kubold{abcdefghijklmnopqrstuvwxyz}$\par
+数字：$\stixbb{0123456789}$（\verb|\stixbb|）\\
+※ cmmib10.pfb を参考に，久保が \verb|CMMB10kubo.otf| を作成した。
+このフォントは，ワードなどtex以外のアプリでも使える。
+
+
+
+\vspace{\baselineskip}
+
+※ 提案1, 2のプリアンブルは，texソースを参照。\par
+
+\end{document}
